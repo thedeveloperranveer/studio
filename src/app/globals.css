@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 5% 7%;
+    --foreground: 210 40% 98%;
+    --card: 240 5% 12%;
+    --card-foreground: 210 40% 98%;
+    --popover: 240 5% 7%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 195 100% 50%; /* #00C6FF */
+    --primary-foreground: 222 47% 11%;
+    --secondary: 271 100% 50%; /* #6E00FF */
+    --secondary-foreground: 271 80% 98%;
+    --muted: 240 5% 17%;
+    --muted-foreground: 240 5% 65%;
+    --accent: 240 5% 22%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5% 25%;
+    --input: 240 5% 25%;
+    --ring: 195 100% 50%;
+    --radius: 1.25rem;
+
+    --sidebar-background: 240 5% 10%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-border: 240 5% 17%;
+    --sidebar-accent: 240 5% 22%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-ring: 195 100% 50%;
+  }
+
+  .dark {
+    --background: 240 5% 7%;
+    --foreground: 210 40% 98%;
+    --card: 240 5% 12%;
+    --card-foreground: 210 40% 98%;
+    --popover: 240 5% 7%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 195 100% 50%; /* #00C6FF */
+    --primary-foreground: 222 47% 11%;
+    --secondary: 271 100% 50%; /* #6E00FF */
+    --secondary-foreground: 271 80% 98%;
+    --muted: 240 5% 17%;
+    --muted-foreground: 240 5% 65%;
+    --accent: 240 5% 22%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5% 25%;
+    --input: 240 5% 25%;
+    --ring: 195 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    overflow-x: hidden;
+  }
+
+  .glassmorphism {
+    @apply bg-card/60 backdrop-blur-xl border border-white/10 shadow-lg;
+    background-color: rgba(20, 20, 20, 0.6);
+  }
+}
+
+@layer components {
+    .gradient-button {
+        @apply bg-gradient-to-r from-primary to-secondary text-primary-foreground;
+    }
+}
