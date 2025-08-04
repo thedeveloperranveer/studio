@@ -1,3 +1,4 @@
+
 import LectureList from './LectureList';
 
 export default function ManageLecturesPage() {

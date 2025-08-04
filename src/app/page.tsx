@@ -1,3 +1,4 @@
+
 'use client';
 import {
   Bell,
@@ -237,7 +238,7 @@ function LatestLecturesSection({ lectures }: { lectures: Post[] }) {
               <div className="p-1">
                 <Card className="glassmorphism overflow-hidden hover:border-primary/50 transition-all duration-300">
                   <CardContent className="p-0">
-                    <a href={lecture.youtubeUrl} target="_blank" rel="noopener noreferrer" className="block h-48 overflow-hidden">
+                    <Link href={`/lectures/${lecture.id}`} className="block h-48 overflow-hidden">
                       <Image
                         src={lecture.thumbnailUrl}
                         alt={lecture.title}
@@ -246,15 +247,15 @@ function LatestLecturesSection({ lectures }: { lectures: Post[] }) {
                         className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                         data-ai-hint="lecture thumbnail"
                       />
-                    </a>
+                    </Link>
                     <div className="p-6">
                       <div className="flex flex-wrap gap-2 mb-2">
                           {lecture.tags.map(tag => <Badge key={tag} variant="outline">{tag}</Badge>)}
                       </div>
                       <h3 className="font-headline text-lg font-semibold h-12 overflow-hidden">{lecture.title}</h3>
-                      <p className="text-muted-foreground text-sm mt-1 h-10 overflow-hidden">{lecture.notes}</p>
+                      <p className="text-muted-foreground text-sm mt-1 h-10 overflow-hidden">{lecture.notes || 'Lecture Notes: Will be provided soon'}</p>
                       <Button className="w-full mt-4 rounded-xl" asChild>
-                        <a href={lecture.youtubeUrl} target="_blank" rel="noopener noreferrer">Watch Lecture</a>
+                        <Link href={`/lectures/${lecture.id}`}>Watch Lecture</Link>
                       </Button>
                     </div>
                   </CardContent>
