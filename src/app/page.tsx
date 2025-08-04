@@ -38,11 +38,14 @@ import {
 import Header from '@/components/layout/Header';
 import { useEffect, useState } from 'react';
 import WelcomePrompt from '@/components/shared/WelcomePrompt';
+import type { Post } from '@/lib/types';
+import { getLectures } from './lectures/actions';
 
 export default function Home() {
   const [showWelcome, setShowWelcome] = useState(false);
   const [userName, setUserName] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [lectures, setLectures] = useState<Post[]>([]);
 
   useEffect(() => {
     // Check if user name exists in localStorage
@@ -54,6 +57,12 @@ export default function Home() {
       setShowWelcome(true);
     }
     setIsLoading(false);
+
+    const fetchLectures = async () => {
+      const fetchedLectures = await getLectures(10); // Fetch a few for the homepage
+      setLectures(fetchedLectures);
+    };
+    fetchLectures();
   }, []);
 
   const handleWelcomeComplete = (name: string) => {
@@ -78,7 +87,7 @@ export default function Home() {
         <AnnouncementsSection />
         <FreeResourcesSection />
         <UpcomingTestsSection />
-        <LatestLecturesSection />
+        <LatestLecturesSection lectures={lectures}/>
         <ImportantUpdatesSection />
       </div>
     </>
@@ -210,27 +219,26 @@ function UpcomingTestsSection() {
   );
 }
 
-function LatestLecturesSection() {
+function LatestLecturesSection({ lectures }: { lectures: Post[] }) {
   return (
     <section className="container mx-auto">
       <h2 className="font-headline text-3xl font-bold mb-6 flex items-center gap-3">
         <Video className="text-primary" /> Latest Lectures
       </h2>
-      {latestLectures.length > 0 ? (
+      {lectures.length > 0 ? (
        <Carousel
         opts={{
           align: "start",
-          loop: true,
         }}
         className="w-full"
       >
         <CarouselContent>
-          {latestLectures.map((lecture) => (
+          {lectures.map((lecture) => (
             <CarouselItem key={lecture.id} className="md:basis-1/2 lg:basis-1/3">
               <div className="p-1">
                 <Card className="glassmorphism overflow-hidden hover:border-primary/50 transition-all duration-300">
                   <CardContent className="p-0">
-                    <Link href={`/lectures/${lecture.id}`} className="block h-48 overflow-hidden">
+                    <a href={lecture.youtubeUrl} target="_blank" rel="noopener noreferrer" className="block h-48 overflow-hidden">
                       <Image
                         src={lecture.thumbnailUrl}
                         alt={lecture.title}
@@ -239,15 +247,15 @@ function LatestLecturesSection() {
                         className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                         data-ai-hint="lecture thumbnail"
                       />
-                    </Link>
+                    </a>
                     <div className="p-6">
                       <div className="flex flex-wrap gap-2 mb-2">
                           {lecture.tags.map(tag => <Badge key={tag} variant="outline">{tag}</Badge>)}
                       </div>
-                      <h3 className="font-headline text-lg font-semibold">{lecture.title}</h3>
-                      <p className="text-muted-foreground text-sm mt-1">{lecture.notes}</p>
+                      <h3 className="font-headline text-lg font-semibold h-12 overflow-hidden">{lecture.title}</h3>
+                      <p className="text-muted-foreground text-sm mt-1 h-10 overflow-hidden">{lecture.notes}</p>
                       <Button className="w-full mt-4 rounded-xl" asChild>
-                        <Link href={`/lectures/${lecture.id}`}>Watch Lecture</Link>
+                        <a href={lecture.youtubeUrl} target="_blank" rel="noopener noreferrer">Watch Lecture</a>
                       </Button>
                     </div>
                   </CardContent>

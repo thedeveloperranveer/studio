@@ -24,6 +24,7 @@ export async function getLectures(max: number = 50): Promise<Post[]> {
             chapter: data.chapter || '',
             tags: data.tags || [],
             type: data.type || 'youtube',
+            youtubeUrl: data.youtubeUrl || '',
             videoUrl: data.videoUrl || '',
             thumbnailUrl: data.thumbnailUrl || '',
             notes: data.notes,

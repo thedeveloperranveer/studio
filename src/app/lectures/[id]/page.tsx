@@ -75,7 +75,7 @@ export default function LectureDetailPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-2">
                 <div className="aspect-video w-full mb-6 rounded-2xl overflow-hidden glassmorphism">
-                     {lecture.type === 'youtube' ? (
+                     {lecture.type === 'youtube' && lecture.videoUrl ? (
                         <iframe
                             className="w-full h-full"
                             src={lecture.videoUrl}
@@ -84,11 +84,16 @@ export default function LectureDetailPage() {
                             allowFullScreen
                         ></iframe>
                      ) : (
-                        <video controls className="w-full h-full" src={lecture.videoUrl}>
-                            Your browser does not support the video tag.
-                        </video>
+                        <div className="w-full h-full flex items-center justify-center bg-muted">
+                            <p>Video player is not available.</p>
+                        </div>
                      )}
                 </div>
+                <Button asChild>
+                    <a href={lecture.youtubeUrl} target="_blank" rel="noopener noreferrer">
+                        Watch on YouTube <ExternalLink className="ml-2 h-4 w-4"/>
+                    </a>
+                </Button>
             </div>
             <div className="lg:col-span-1">
                  <Card className="glassmorphism sticky top-24">

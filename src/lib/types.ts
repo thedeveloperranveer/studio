@@ -79,6 +79,7 @@ export interface Post {
   notify: boolean;
   timestamp: any;
   type: "youtube";
+  youtubeUrl: string; // Original YouTube URL
   videoUrl: string; // Embed URL
   thumbnailUrl: string; // YouTube thumbnail URL
   notes?: string;

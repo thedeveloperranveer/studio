@@ -40,6 +40,7 @@ export async function saveCard(
       exam,
       subject,
       tags: restOfData.tags,
+      youtubeUrl: restOfData.youtubeLink,
       videoUrl: embedUrl,
       type: 'youtube',
       thumbnailUrl,

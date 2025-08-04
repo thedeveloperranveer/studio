@@ -53,7 +53,7 @@ export default function LectureList() {
           {lectures.map((lecture) => (
             <Card key={lecture.id} className="glassmorphism overflow-hidden group">
               <CardContent className="p-0">
-                <Link href={`/lectures/${lecture.id}`} className="block h-48 overflow-hidden relative">
+                <a href={lecture.youtubeUrl} target="_blank" rel="noopener noreferrer" className="block h-48 overflow-hidden relative">
                   <Image
                     src={lecture.thumbnailUrl || "https://placehold.co/600x400.png"}
                     alt={lecture.title}
@@ -63,7 +63,7 @@ export default function LectureList() {
                     data-ai-hint="lecture thumbnail"
                   />
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all"></div>
-                </Link>
+                </a>
                 <div className="p-4">
                   <div className="flex flex-wrap gap-1 mb-2">
                     <Badge variant="secondary" className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white">{lecture.subject}</Badge>
