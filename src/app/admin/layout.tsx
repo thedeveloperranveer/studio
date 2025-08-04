@@ -13,6 +13,7 @@ import {
   AlertTriangle,
   Settings,
   Grid3x3,
+  PenSquare,
 } from 'lucide-react';
 import {
   SidebarProvider,
@@ -37,7 +38,8 @@ const adminNavItems = [
   { href: '/admin/lectures/upload', label: 'Upload Lectures', icon: Upload },
   { href: '/admin/lectures', label: 'Manage Lectures', icon: Settings },
   { href: '/admin/card-generator', label: 'Card Generator', icon: Grid3x3 },
-  { href: '#', label: 'Notes', icon: FileText },
+  { href: '/admin/notes-generator', label: 'Notes Generator', icon: PenSquare },
+  { href: '/admin/resources-generator', label: 'Resources Generator', icon: Book },
   { href: '#', label: 'Tests', icon: FlaskConical },
   { href: '#', 'label': 'Announcements', 'icon': Bell },
   { href: '#', 'label': 'Important', 'icon': AlertTriangle },
