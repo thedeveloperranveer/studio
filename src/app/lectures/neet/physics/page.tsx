@@ -1,3 +1,4 @@
+
 import Header from '@/components/layout/Header';
 
 export default function NeetPhysicsPage() {
@@ -26,7 +27,7 @@ export default function NeetPhysicsPage() {
     overflow: hidden;
     width: 320px;
     transition: transform 0.2s;
-    margin: 2rem;
+    margin: 1rem;
   }
   .lecture-card:hover {
     transform: translateY(-5px);
@@ -78,15 +79,15 @@ export default function NeetPhysicsPage() {
   return (
     <>
       <Header />
-      <div className="container mx-auto px-4 py-8">
+      <main className="container mx-auto px-4 py-8">
         <h1 className="font-headline text-4xl md:text-5xl font-bold bg-gradient-to-br from-white to-gray-400 bg-clip-text text-transparent mb-8">
-          NEET - Physics
+          NEET - Physics Lectures
         </h1>
         <div
-          className="flex flex-wrap gap-4"
+          className="flex flex-wrap justify-center md:justify-start -m-4"
           dangerouslySetInnerHTML={{ __html: lectureCardHtml }}
         />
-      </div>
+      </main>
     </>
   );
 }
