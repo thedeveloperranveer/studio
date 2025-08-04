@@ -60,9 +60,8 @@ export async function uploadLecture(
       postDoc.notes = notes;
     }
     
-    // Use the new collection path structure: posts_JEE_physics, posts_NEET_chemistry etc.
-    const collectionPath = `posts_${exam}_${subject.toLowerCase()}`;
-    const postCollectionRef = collection(db, collectionPath);
+    // Save all posts to a single "lectures" collection
+    const postCollectionRef = collection(db, 'lectures');
     await addDoc(postCollectionRef, postDoc);
 
     // In a real app, you would trigger a push notification here if notify is true.

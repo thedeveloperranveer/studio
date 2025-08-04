@@ -48,8 +48,8 @@ export async function saveCard(
       timestamp: serverTimestamp(),
     };
     
-    const collectionPath = `posts_${exam}_${subject.toLowerCase()}`;
-    const postCollectionRef = collection(db, collectionPath);
+    // Save all posts to a single "lectures" collection
+    const postCollectionRef = collection(db, 'lectures');
     await addDoc(postCollectionRef, postDoc);
 
     return { success: true, message: 'Lecture post created successfully!' };

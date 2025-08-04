@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { collectionGroup, getDocs, query, where, doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc } from 'firebase/firestore';
 import { db } from '@/lib/firebase/config';
 import type { Post } from '@/lib/types';
 import Header from '@/components/layout/Header';
@@ -26,30 +26,13 @@ export default function LectureDetailPage() {
       setError(null);
       
       try {
-        // This is INEFFICIENT, but necessary with the current Firestore structure.
-        // A better structure would be a single 'lectures' collection with 'exam' and 'subject' fields to filter on.
-        const prefixes = ['posts_JEE_', 'posts_NEET_', 'posts_BOTH_'];
-        const subjects = ['physics', 'chemistry', 'maths', 'biology'];
-        let foundDoc = null;
+        const docRef = doc(db, 'lectures', lectureId);
+        const docSnap = await getDoc(docRef);
 
-        for (const prefix of prefixes) {
-          for (const subject of subjects) {
-            const path = `${prefix}${subject.toLowerCase()}`;
-            const docRef = doc(db, path, lectureId);
-            const docSnap = await getDoc(docRef);
-
-            if (docSnap.exists()) {
-              foundDoc = { id: docSnap.id, ...docSnap.data() } as Post;
-              break;
-            }
-          }
-          if (foundDoc) break;
-        }
-
-        if (foundDoc) {
-            setLecture(foundDoc);
+        if (docSnap.exists()) {
+          setLecture({ id: docSnap.id, ...docSnap.data() } as Post);
         } else {
-            setError('Lecture not found.');
+          setError('Lecture not found.');
         }
 
       } catch (err) {
