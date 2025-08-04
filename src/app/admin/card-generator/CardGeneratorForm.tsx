@@ -10,7 +10,6 @@ import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Copy, UploadCloud } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import { saveCard } from './actions';
 
 interface CardData {
   title: string;
@@ -153,30 +152,6 @@ export default function CardGeneratorForm() {
         };
         setCardData(newCardData);
     };
-    
-    const handleSave = async () => {
-        const videoId = extractYouTubeID(formData.youtubeLink);
-        if (!videoId) {
-             toast({ variant: 'destructive', title: 'Invalid URL', description: 'Please enter a valid YouTube link.' });
-             return;
-        }
-        
-        const finalCardData = {
-            ...formData,
-            tags: formData.tags.split(',').map(t => t.trim()).filter(t => t),
-            videoId
-        };
-
-        // Don't await this, let it run in the background
-        saveCard(finalCardData).catch(error => {
-             console.error("Failed to save card in background:", error);
-             // Non-blocking error notification
-             toast({ variant: "destructive", title: "Save Failed", description: "Could not save the lecture post in the background." });
-        });
-
-        toast({ title: 'Success!', description: 'Lecture post created and sent to its section.' });
-        router.push('/admin');
-    };
 
     const copyToClipboard = () => {
         if (!cardData) return;
@@ -185,7 +160,6 @@ export default function CardGeneratorForm() {
         toast({ title: 'Copied!', description: 'HTML code copied to clipboard.' });
     };
     
-    const isPreviewReady = !!cardData;
     const cardHTML = cardData ? generateCardHTML(cardData) : '';
 
   return (
@@ -239,9 +213,6 @@ export default function CardGeneratorForm() {
                     </div>
                     <div className="flex flex-col sm:flex-row gap-2">
                         <Button type="submit" className="w-full">Generate Preview</Button>
-                        <Button type="button" onClick={handleSave} className="w-full gradient-button" disabled={!isPreviewReady}>
-                           <UploadCloud className="mr-2 h-4 w-4" /> Create Post
-                        </Button>
                     </div>
                 </form>
             </CardContent>
@@ -263,6 +234,21 @@ export default function CardGeneratorForm() {
                             Generate a preview to see it here.
                          </div>
                     )}
+                </CardContent>
+            </Card>
+             <Card className="glassmorphism">
+                <CardHeader>
+                    <CardTitle className="flex justify-between items-center">
+                        <span>HTML Code</span>
+                         <Button variant="ghost" size="icon" onClick={copyToClipboard} disabled={!cardData}><Copy className="w-5 h-5"/></Button>
+                    </CardTitle>
+                </CardHeader>
+                 <CardContent>
+                    <pre className="p-4 rounded-lg bg-muted/50 overflow-x-auto text-sm">
+                        <code>
+                            {cardHTML || 'Generate a preview to see the code.'}
+                        </code>
+                    </pre>
                 </CardContent>
             </Card>
         </div>
