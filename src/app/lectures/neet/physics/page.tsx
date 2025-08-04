@@ -2,7 +2,7 @@
 import Header from '@/components/layout/Header';
 
 export default function NeetPhysicsPage() {
-  const lectureCardHtml = `
+  const lectureCardsHTML = `
 <div class="lecture-card">
   <img src="https://img.youtube.com/vi/WDjcpSCI-uU/0.jpg" alt="Quantum Physics Demystified" class="thumbnail">
   <div class="card-content">
@@ -27,7 +27,7 @@ export default function NeetPhysicsPage() {
     overflow: hidden;
     width: 320px;
     transition: transform 0.2s;
-    margin: 1rem;
+    margin: 1rem; /* Added for spacing between cards */
   }
   .lecture-card:hover {
     transform: translateY(-5px);
@@ -83,9 +83,10 @@ export default function NeetPhysicsPage() {
         <h1 className="font-headline text-4xl md:text-5xl font-bold bg-gradient-to-br from-white to-gray-400 bg-clip-text text-transparent mb-8">
           NEET - Physics Lectures
         </h1>
+        {/* This div will contain all the lecture cards for this section */}
         <div
           className="flex flex-wrap justify-center md:justify-start -m-4"
-          dangerouslySetInnerHTML={{ __html: lectureCardHtml }}
+          dangerouslySetInnerHTML={{ __html: lectureCardsHTML }}
         />
       </main>
     </>
