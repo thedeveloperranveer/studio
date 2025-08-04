@@ -23,6 +23,17 @@ export const latestLectures: LatestLecture[] = [
     youtubeUrl: "https://www.youtube.com/watch?v=WDjcpSCI-uU",
     tags: ["NEET", "Physics", "YouTube Live"],
     notes: "Lecture Notes: Will be provided soon"
+  },
+  {
+    id: "46CaYBwEp_k",
+    title: "Vectors One Shot",
+    subject: "Physics",
+    chapter: "Vectors",
+    thumbnailUrl: "https://img.youtube.com/vi/46CaYBwEp_k/0.jpg",
+    videoUrl: "https://www.youtube.com/embed/46CaYBwEp_k",
+    youtubeUrl: "https://www.youtube.com/watch?v=46CaYBwEp_k",
+    tags: ["Vectors", "One Shot", "JEE", "NEET"],
+    notes: "Lecture Notes: Will be provided soon"
   }
 ];
 
