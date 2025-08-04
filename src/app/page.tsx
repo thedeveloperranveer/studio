@@ -32,7 +32,6 @@ import {
   announcements,
   freeResources,
   importantUpdates,
-  latestLectures,
   upcomingTests,
 } from '@/lib/mock-data';
 import Header from '@/components/layout/Header';

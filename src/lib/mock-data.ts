@@ -20,6 +20,7 @@ export const latestLectures: LatestLecture[] = [
     chapter: "YouTube Live",
     thumbnailUrl: "https://img.youtube.com/vi/WDjcpSCI-uU/0.jpg",
     videoUrl: "https://www.youtube.com/embed/WDjcpSCI-uU",
+    youtubeUrl: "https://www.youtube.com/watch?v=WDjcpSCI-uU",
     tags: ["NEET", "Physics", "YouTube Live"],
     notes: "Lecture Notes: Will be provided soon"
   }

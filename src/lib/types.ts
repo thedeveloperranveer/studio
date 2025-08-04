@@ -30,6 +30,7 @@ export interface LatestLecture {
   chapter: string;
   thumbnailUrl: string;
   videoUrl: string;
+  youtubeUrl: string;
   tags: string[];
   notes?: string;
 }
