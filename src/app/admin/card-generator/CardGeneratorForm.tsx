@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Copy, UploadCloud } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { saveCard } from './actions';
 
 interface CardData {
   title: string;
@@ -153,6 +154,19 @@ export default function CardGeneratorForm() {
         setCardData(newCardData);
     };
 
+    const handleSave = async () => {
+        if (!cardData) {
+             toast({ variant: 'destructive', title: 'No Preview', description: 'Please generate a preview first.' });
+            return;
+        }
+        const result = await saveCard(cardData);
+        if (result.success) {
+            toast({ title: 'Success!', description: result.message });
+        } else {
+            toast({ variant: 'destructive', title: 'Error', description: result.message });
+        }
+    }
+
     const copyToClipboard = () => {
         if (!cardData) return;
         const code = generateCardHTML(cardData);
@@ -213,6 +227,10 @@ export default function CardGeneratorForm() {
                     </div>
                     <div className="flex flex-col sm:flex-row gap-2">
                         <Button type="submit" className="w-full">Generate Preview</Button>
+                        <Button type="button" onClick={handleSave} className="w-full gradient-button" disabled={!cardData}>
+                            <UploadCloud className="mr-2 h-4 w-4"/>
+                            Create Post
+                        </Button>
                     </div>
                 </form>
             </CardContent>
