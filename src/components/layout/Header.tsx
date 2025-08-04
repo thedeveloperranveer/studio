@@ -13,7 +13,7 @@ const navLinks = [
   { href: '/resources', label: 'Resources', icon: BookOpen },
   { href: '/lectures', label: 'Lectures', icon: Film },
   { href: '/tests', label: 'Test Zone', icon: FlaskConical },
-  { href: '/neet/physics', label: 'NEET', icon: Stethoscope },
+  { href: '/lectures/neet/physics', label: 'NEET', icon: Stethoscope },
 ];
 
 export default function Header() {
