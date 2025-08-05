@@ -18,13 +18,13 @@ export default function AdminDashboardPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <Card className="glassmorphism hover:border-primary/50 transition-all duration-300">
                 <CardHeader className="flex flex-row items-center justify-between pb-2">
-                    <CardTitle className="font-headline text-lg">Add New Content</CardTitle>
+                    <CardTitle className="font-headline text-lg">Content Generators</CardTitle>
                     <PlusCircle className="w-6 h-6 text-primary"/>
                 </CardHeader>
                 <CardContent>
                     <p className="text-muted-foreground mb-4">Add new lectures, notes, or resources to the website.</p>
                     <Button className="w-full rounded-xl" asChild>
-                        <Link href="/admin/add-content">Go to Generator</Link>
+                        <Link href="/admin/add-content">Go to Generators</Link>
                     </Button>
                 </CardContent>
             </Card>
