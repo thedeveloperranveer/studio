@@ -16,19 +16,6 @@ export default function NeetPhysicsPage() {
     <a href="https://www.youtube.com/watch?v=WDjcpSCI-uU" target="_blank" class="button">Watch on YouTube</a>
   </div>
 </div>
-<div class="lecture-card">
-  <img src="https://img.youtube.com/vi/WDjcpSCI-uU/0.jpg" alt="Quantum Physics Demystified" class="thumbnail">
-  <div class="card-content">
-    <h3 class="title">Quantum Physics Demystified</h3>
-    <div class="tags">
-          <span class="tag">PYQ</span>
-          <span class="tag">OneShot</span>
-          <span class="tag">Advanced</span>
-    </div>
-    <p class="notes">Full chapter notes available in the description.</p>
-    <a href="https://www.youtube.com/watch?v=WDjcpSCI-uU" target="_blank" class="button">Watch on YouTube</a>
-  </div>
-</div>
 
 <style>
   .lecture-card {
@@ -40,6 +27,7 @@ export default function NeetPhysicsPage() {
     overflow: hidden;
     width: 320px;
     transition: transform 0.2s;
+    margin: 1rem;
   }
   .lecture-card:hover {
     transform: translateY(-5px);
@@ -97,7 +85,7 @@ export default function NeetPhysicsPage() {
         </h1>
         {/* This div will contain all the lecture cards for this section */}
         <div
-          className="flex flex-wrap justify-center md:justify-start gap-8"
+          className="flex flex-wrap justify-center md:justify-start gap-4"
           dangerouslySetInnerHTML={{ __html: lectureCardsHTML }}
         />
       </main>

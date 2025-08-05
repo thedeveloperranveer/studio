@@ -1,22 +1,9 @@
 
 import Header from '@/components/layout/Header';
 
-export default function LatestLecturesPage() {
-  const allLectureCardsHTML = `
-    <div class="lecture-card">
-      <img src="https://img.youtube.com/vi/WDjcpSCI-uU/0.jpg" alt="Quantum Physics Demystified" class="thumbnail">
-      <div class="card-content">
-        <h3 class="title">Quantum Physics Demystified</h3>
-        <div class="tags">
-              <span class="tag">PYQ</span>
-              <span class="tag">OneShot</span>
-              <span class="tag">Advanced</span>
-        </div>
-        <p class="notes">Full chapter notes available in the description.</p>
-        <a href="https://www.youtube.com/watch?v=WDjcpSCI-uU" target="_blank" class="button">Watch on YouTube</a>
-      </div>
-    </div>
-
+export default function NeetBiologyPage() {
+  const lectureCardsHTML = `
+    {/* Add NEET Biology lecture cards here */}
     <style>
       .lecture-card {
         background-color: #1e1e1e;
@@ -81,11 +68,11 @@ export default function LatestLecturesPage() {
       <Header />
       <main className="container mx-auto px-4 py-8">
         <h1 className="font-headline text-4xl md:text-5xl font-bold bg-gradient-to-br from-white to-gray-400 bg-clip-text text-transparent mb-8">
-          Latest Lectures
+          NEET - Biology Lectures
         </h1>
         <div
           className="flex flex-wrap justify-center md:justify-start gap-4"
-          dangerouslySetInnerHTML={{ __html: allLectureCardsHTML }}
+          dangerouslySetInnerHTML={{ __html: lectureCardsHTML }}
         />
       </main>
     </>

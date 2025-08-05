@@ -10,7 +10,6 @@ import {
   ChevronRight,
   Inbox,
 } from 'lucide-react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -23,82 +22,33 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from '@/components/ui/carousel';
-import {
   announcements,
   freeResources,
   importantUpdates,
   upcomingTests,
 } from '@/lib/mock-data';
 import Header from '@/components/layout/Header';
-import { useEffect, useState } from 'react';
-import WelcomePrompt from '@/components/shared/WelcomePrompt';
-import type { Post } from '@/lib/types';
-import { getLectures } from './lectures/actions';
 
 export default function Home() {
-  const [showWelcome, setShowWelcome] = useState(false);
-  const [userName, setUserName] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [lectures, setLectures] = useState<Post[]>([]);
-
-  useEffect(() => {
-    // Check if user name exists in localStorage
-    const storedName = localStorage.getItem('userName');
-    if (storedName) {
-      setUserName(storedName);
-      setShowWelcome(false);
-    } else {
-      setShowWelcome(true);
-    }
-    setIsLoading(false);
-
-    const fetchLectures = async () => {
-      const fetchedLectures = await getLectures(10); // Fetch a few for the homepage
-      setLectures(fetchedLectures);
-    };
-    fetchLectures();
-  }, []);
-
-  const handleWelcomeComplete = (name: string) => {
-    setUserName(name);
-    setShowWelcome(false);
-  };
-
-  if (isLoading) {
-    // You can return a loading spinner here if you want
-    return null;
-  }
-
-  if (showWelcome) {
-    return <WelcomePrompt onWelcomeComplete={handleWelcomeComplete} />;
-  }
-
   return (
     <>
       <Header />
       <div className="space-y-16 md:space-y-24 px-4 py-8 md:py-16">
-        <HeroSection name={userName} />
+        <HeroSection />
         <AnnouncementsSection />
         <FreeResourcesSection />
         <UpcomingTestsSection />
-        <LatestLecturesSection lectures={lectures}/>
         <ImportantUpdatesSection />
       </div>
     </>
   );
 }
 
-function HeroSection({ name }: { name: string | null }) {
+function HeroSection() {
   return (
     <section className="text-center container mx-auto">
       <h1 className="font-headline text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight bg-gradient-to-br from-white to-gray-400 bg-clip-text text-transparent">
-        Welcome, {name || 'Guest'}! Master Your JEE and NEET Preparation
+        Master Your JEE and NEET Preparation
       </h1>
       <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
         StudyJEET provides you with the best resources, lectures, and test series to ace the JEE and NEET. Your journey to an IIT or Medical College starts here.
@@ -215,65 +165,6 @@ function UpcomingTestsSection() {
             <EmptyState title="No Upcoming Tests" description="Tests will be scheduled soon. Keep an eye out!" icon={Inbox} />
          )}
       </div>
-    </section>
-  );
-}
-
-function LatestLecturesSection({ lectures }: { lectures: Post[] }) {
-  return (
-    <section className="container mx-auto">
-      <h2 className="font-headline text-3xl font-bold mb-6 flex items-center gap-3">
-        <Video className="text-primary" /> Latest Lectures
-      </h2>
-      {lectures.length > 0 ? (
-       <Carousel
-        opts={{
-          align: "start",
-        }}
-        className="w-full"
-      >
-        <CarouselContent>
-          {lectures.map((lecture) => (
-            <CarouselItem key={lecture.id} className="md:basis-1/2 lg:basis-1/3">
-              <div className="p-1">
-                <Card className="glassmorphism overflow-hidden hover:border-primary/50 transition-all duration-300">
-                  <CardContent className="p-0">
-                    <Link href={`/lectures/${lecture.id}`} className="block h-48 overflow-hidden">
-                      <Image
-                        src={lecture.thumbnailUrl}
-                        alt={lecture.title}
-                        width={600}
-                        height={400}
-                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                        data-ai-hint="lecture thumbnail"
-                      />
-                    </Link>
-                    <div className="p-6">
-                      <div className="flex flex-wrap gap-2 mb-2">
-                          {lecture.tags.map(tag => <Badge key={tag} variant="outline">{tag}</Badge>)}
-                      </div>
-                      <h3 className="font-headline text-lg font-semibold h-12 overflow-hidden">{lecture.title}</h3>
-                      <p className="text-muted-foreground text-sm mt-1 h-10 overflow-hidden">{lecture.notes || 'Lecture Notes: Will be provided soon'}</p>
-                      <Button className="w-full mt-4 rounded-xl" asChild>
-                        <Link href={`/lectures/${lecture.id}`}>Watch Lecture</Link>
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-        <CarouselPrevious className="ml-12" />
-        <CarouselNext className="mr-12"/>
-      </Carousel>
-      ) : (
-        <Card className="glassmorphism">
-            <CardContent className="p-10">
-                 <EmptyState title="No Lectures Available" description="New lectures will be uploaded soon." icon={Inbox} />
-            </CardContent>
-        </Card>
-      )}
     </section>
   );
 }

@@ -2,27 +2,31 @@
 'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Bell, BookOpen, Film, FlaskConical, LayoutGrid, LogIn, User, Beaker, Stethoscope } from 'lucide-react';
+import { Bell, BookOpen, Film, FlaskConical, LayoutGrid, User, Clock } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import Logo from '../shared/Logo';
 import { Sheet, SheetContent, SheetTrigger } from '../ui/sheet';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+
 
 const navLinks = [
   { href: '/', label: 'Home', icon: LayoutGrid },
   { href: '/resources', label: 'Resources', icon: BookOpen },
-  { href: '/lectures', label: 'Lectures', icon: Film },
+  { href: '/lectures', label: 'Latest Lectures', icon: Clock },
   { href: '/tests', label: 'Test Zone', icon: FlaskConical },
 ];
 
 export default function Header() {
   const pathname = usePathname();
-  
-  // Do not render header on admin pages
-  if (pathname.startsWith('/admin') || pathname.startsWith('/login')) {
-    return null;
-  }
 
   return (
     <header className="sticky top-4 z-50 mx-auto max-w-6xl w-[95%]">
@@ -44,13 +48,31 @@ export default function Header() {
               <Link href={link.href}>{link.label}</Link>
             </Button>
           ))}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className='rounded-lg'>Lectures</Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56">
+                <DropdownMenuLabel>JEE</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem asChild><Link href="/lectures/jee/physics">Physics</Link></DropdownMenuItem>
+                <DropdownMenuItem asChild><Link href="/lectures/jee/chemistry">Chemistry</Link></DropdownMenuItem>
+                <DropdownMenuItem asChild><Link href="/lectures/jee/maths">Maths</Link></DropdownMenuItem>
+                <DropdownMenuSeparator />
+                 <DropdownMenuLabel>NEET</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem asChild><Link href="/lectures/neet/physics">Physics</Link></DropdownMenuItem>
+                <DropdownMenuItem asChild><Link href="/lectures/neet/chemistry">Chemistry</Link></DropdownMenuItem>
+                <DropdownMenuItem asChild><Link href="/lectures/neet/biology">Biology</Link></DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
         </nav>
         <div className="hidden md:flex items-center gap-2">
           <Button variant="ghost" size="icon" className="rounded-full">
             <Bell className="h-5 w-5" />
           </Button>
           <Button asChild className='rounded-xl'>
-            <Link href="/login"><LogIn className='mr-2'/>Login</Link>
+            <Link href="/profile"><User className='mr-2'/>Profile</Link>
           </Button>
         </div>
         <div className="md:hidden">
@@ -90,9 +112,6 @@ export default function Header() {
                       Profile
                     </Link>
                   </Button>
-                   <Button asChild className='rounded-xl'>
-                     <Link href="/login"><LogIn className='mr-2'/>Login</Link>
-                   </Button>
               </div>
             </SheetContent>
           </Sheet>

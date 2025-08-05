@@ -1,3 +1,4 @@
+
 import Header from "@/components/layout/Header";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -6,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
-import { Bookmark, History, LogOut, Settings, Shield } from "lucide-react";
+import { Bookmark, History, Settings, Shield } from "lucide-react";
 
 export default function ProfilePage() {
   return (
@@ -15,7 +16,7 @@ export default function ProfilePage() {
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col items-center text-center mb-12">
           <Avatar className="w-24 h-24 mb-4 border-4 border-primary">
-            <AvatarImage src="" />
+            <AvatarImage src="https://placehold.co/100x100" data-ai-hint="avatar placeholder" />
             <AvatarFallback>U</AvatarFallback>
           </Avatar>
           <h1 className="font-headline text-4xl font-bold">User</h1>
@@ -31,7 +32,6 @@ export default function ProfilePage() {
                         <Button variant="ghost" className="justify-start gap-3 rounded-lg"><Bookmark className="w-5 h-5"/> Saved Items</Button>
                         <Button variant="ghost" className="justify-start gap-3 rounded-lg"><History className="w-5 h-5"/> Watch History</Button>
                         <Button variant="ghost" className="justify-start gap-3 rounded-lg"><Shield className="w-5 h-5"/> Privacy & Security</Button>
-                        <Button variant="ghost" className="text-destructive hover:text-destructive justify-start gap-3 rounded-lg"><LogOut className="w-5 h-5"/> Logout</Button>
                      </nav>
                    </CardContent>
                 </Card>
