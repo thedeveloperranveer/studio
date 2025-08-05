@@ -43,8 +43,8 @@ export default function Home() {
       <Header />
       <div className="space-y-16 md:space-y-24 px-4 py-8 md:py-16">
         <HeroSection />
-        <AnnouncementsSection />
         <LatestLecturesSection />
+        <AnnouncementsSection />
         <FreeResourcesSection />
         <UpcomingTestsSection />
         <ImportantUpdatesSection />
