@@ -22,11 +22,6 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import {
-  freeResources,
-  importantUpdates,
-  upcomingTests,
-} from '@/lib/mock-data';
 import Header from '@/components/layout/Header';
 import {
   Carousel,
@@ -48,9 +43,6 @@ export default function Home() {
         <HeroSection />
         <LatestLecturesSection />
         <AnnouncementsSection />
-        <FreeResourcesSection />
-        <UpcomingTestsSection />
-        <ImportantUpdatesSection />
       </div>
     </>
   );
@@ -306,108 +298,6 @@ function LatestLecturesSection() {
         <CarouselPrevious className="ml-12 bg-background/50 backdrop-blur-sm border-primary/50 hover:bg-primary/20"/>
         <CarouselNext className="mr-12 bg-background/50 backdrop-blur-sm border-primary/50 hover:bg-primary/20" />
       </Carousel>
-    </section>
-  );
-}
-
-
-function FreeResourcesSection() {
-  return (
-    <section className="container mx-auto">
-      <h2 className="font-headline text-3xl font-bold mb-6 flex items-center gap-3">
-        <Book className="text-primary" /> Free Resources
-      </h2>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-         {freeResources.length > 0 ? (
-          freeResources.map((item) => (
-            <Card key={item.id} className="glassmorphism text-center flex flex-col items-center justify-center p-6 hover:border-primary/50 transition-all duration-300">
-              <FileText className="w-12 h-12 mb-4 text-primary" />
-              <h3 className="font-headline text-xl font-semibold">{item.subject}</h3>
-              <p className="text-muted-foreground">{item.type}</p>
-              <Button variant="link" asChild className="mt-2">
-                <Link href="/resources">View All <ChevronRight className="w-4 h-4 ml-1"/></Link>
-              </Button>
-            </Card>
-          ))
-        ) : (
-            <div className="col-span-2 md:col-span-4">
-                <EmptyState title="No Free Resources" description="Resources will be available soon." icon={Inbox} />
-            </div>
-        )}
-      </div>
-    </section>
-  );
-}
-
-function UpcomingTestsSection() {
-  return (
-    <section className="container mx-auto">
-      <h2 className="font-headline text-3xl font-bold mb-6 flex items-center gap-3">
-        <Calendar className="text-primary" /> Upcoming Tests
-      </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-         {upcomingTests.length > 0 ? (
-            upcomingTests.map((test) => (
-            <Card key={test.id} className="glassmorphism hover:border-primary/50 transition-all duration-300 flex flex-col">
-              <CardHeader>
-                <Badge variant="secondary" className="absolute top-4 right-4 bg-gradient-to-r from-pink-500 to-orange-400 text-white">{test.subject}</Badge>
-                <CardTitle className="font-headline text-xl">{test.title}</CardTitle>
-                <CardDescription>{test.date}</CardDescription>
-              </CardHeader>
-              <CardContent className="flex-grow">
-                 <p className="text-sm text-muted-foreground mb-4">Starts in:</p>
-              </CardContent>
-              <CardFooter>
-                <Button className="w-full rounded-xl" asChild>
-                  <Link href="/tests">View Details</Link>
-                </Button>
-              </CardFooter>
-            </Card>
-          ))
-         ) : (
-            <EmptyState title="No Upcoming Tests" description="Tests will be scheduled soon. Keep an eye out!" icon={Inbox} />
-         )}
-      </div>
-    </section>
-  );
-}
-
-function ImportantUpdatesSection() {
-  return (
-    <section className="container mx-auto">
-      <h2 className="font-headline text-3xl font-bold mb-6 flex items-center gap-3">
-        <AlertTriangle className="text-secondary" /> Important
-      </h2>
-      <div className="space-y-4">
-        {importantUpdates.length > 0 ? (
-            importantUpdates.map((item) => (
-            <Card key={item.id} className="glassmorphism hover:border-secondary/50 transition-all duration-300">
-                <CardContent className="p-4 flex items-center justify-between">
-                <div className="flex items-center gap-4">
-                    <div className="bg-secondary/20 p-2 rounded-full">
-                    <AlertTriangle className="w-6 h-6 text-secondary" />
-                    </div>
-                    <div>
-                    <h3 className="font-semibold">{item.title}</h3>
-                    <p className="text-sm text-muted-foreground">{item.description}</p>
-                    </div>
-                </div>
-                {item.link && (
-                    <Button variant="link" asChild>
-                    <Link href={item.link}>Learn More</Link>
-                    </Button>
-                )}
-                </CardContent>
-            </Card>
-            ))
-        ) : (
-            <Card className="glassmorphism">
-                <CardContent className="p-10 text-center">
-                    <EmptyState title="No Important Updates" description="All clear for now. Check back later." icon={Inbox} />
-                </CardContent>
-            </Card>
-        )}
-      </div>
     </section>
   );
 }

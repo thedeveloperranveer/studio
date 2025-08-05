@@ -1,5 +1,5 @@
 
-import type { FreeResource, UpcomingTest, LatestLecture, ImportantUpdate } from './types';
+import type { FreeResource, UpcomingTest, LatestLecture } from './types';
 
 // This file is now primarily for static data that is not managed by Firestore.
 // Announcements and Feedback are now fetched from Firestore.
@@ -38,5 +38,3 @@ export const latestLectures: LatestLecture[] = [
     notes: "Lecture Notes: Will be provided soon"
   }
 ];
-
-export const importantUpdates: ImportantUpdate[] = [];

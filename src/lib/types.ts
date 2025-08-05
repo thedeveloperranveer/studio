@@ -36,13 +36,6 @@ export interface LatestLecture {
   notes?: string;
 }
 
-export interface ImportantUpdate {
-  id: number;
-  title: string;
-  description: string;
-  link?: string;
-}
-
 export interface Feedback {
     id: string;
     subject: string;

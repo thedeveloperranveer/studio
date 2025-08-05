@@ -123,6 +123,9 @@ export default function Header() {
           <Button variant="ghost" size="icon" className="rounded-full">
             <Bell className="h-5 w-5" />
           </Button>
+           <Button variant="ghost" size="icon" className="rounded-full" asChild>
+            <Link href="/profile"><User className="h-5 w-5" /></Link>
+          </Button>
           <Button asChild className='rounded-xl'>
             <Link href="/login">Login</Link>
           </Button>
