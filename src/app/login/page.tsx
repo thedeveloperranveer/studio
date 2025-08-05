@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { useToast } from '@/hooks/use-toast';
 import Logo from '@/components/shared/Logo';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '@/lib/firebase/config';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -16,28 +18,43 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
-    // This is a mock login.
-    // In a real app, you would use Firebase Auth here.
-    setTimeout(() => {
-      if (email === 'admin' && password === 'admin') {
-        toast({
-          title: "Login Successful",
-          description: "Redirecting to admin dashboard...",
-        });
-        router.push('/admin/dashboard');
-      } else {
-        toast({
-          variant: "destructive",
-          title: "Login Failed",
-          description: "Invalid email or password.",
-        });
-        setIsLoading(false);
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      toast({
+        title: "Login Successful",
+        description: "Redirecting to admin dashboard...",
+      });
+      router.push('/admin/dashboard');
+    } catch (error: any) {
+      console.error("Firebase Auth Error:", error);
+      let errorMessage = "An unknown error occurred.";
+      switch (error.code) {
+        case 'auth/user-not-found':
+          errorMessage = "No user found with this email.";
+          break;
+        case 'auth/wrong-password':
+          errorMessage = "Incorrect password. Please try again.";
+          break;
+        case 'auth/invalid-credential':
+            errorMessage = "Invalid credentials. Please check your email and password.";
+            break;
+        case 'auth/invalid-email':
+          errorMessage = "The email address is not valid.";
+          break;
+        default:
+          errorMessage = "Login failed. Please try again later.";
       }
-    }, 1000);
+      toast({
+        variant: "destructive",
+        title: "Login Failed",
+        description: errorMessage,
+      });
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -56,8 +73,8 @@ export default function LoginPage() {
               <Label htmlFor="email">Email</Label>
               <Input
                 id="email"
-                type="text"
-                placeholder="admin"
+                type="email"
+                placeholder="admin@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -69,7 +86,7 @@ export default function LoginPage() {
               <Input
                 id="password"
                 type="password"
-                placeholder="admin"
+                placeholder="********"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
