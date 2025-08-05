@@ -9,12 +9,13 @@ import { summarizeFeedback } from "@/ai/flows/summarize-feedback";
 import { Loader2, Trash2, Wand2 } from "lucide-react";
 import { getFeedback, deleteFeedback } from "@/lib/actions/feedback.actions";
 import type { Feedback } from "@/lib/types";
+import { Label } from "@/components/ui/label";
 
 export default function ViewFeedbackPage() {
   const { toast } = useToast();
   const [feedback, setFeedback] = useState<Feedback[]>([]);
   const [summary, setSummary] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  const [isSummarizing, setIsSummarizing] = useState(false);
   const [isFetching, setIsFetching] = useState(true);
 
   useEffect(() => {
@@ -52,7 +53,7 @@ export default function ViewFeedbackPage() {
         return;
     }
     
-    setIsLoading(true);
+    setIsSummarizing(true);
     setSummary('');
 
     try {
@@ -67,7 +68,7 @@ export default function ViewFeedbackPage() {
             description: "Could not summarize the feedback. Please try again.",
         });
     } finally {
-        setIsLoading(false);
+        setIsSummarizing(false);
     }
   };
 
@@ -84,8 +85,8 @@ export default function ViewFeedbackPage() {
                     Here is the latest feedback submitted by users.
                     </CardDescription>
                 </div>
-                 <Button onClick={handleSummarize} disabled={isLoading || feedback.length === 0}>
-                    {isLoading ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Summarizing...</> : <><Wand2 className="mr-2 h-4 w-4"/>Summarize with AI</>}
+                 <Button onClick={handleSummarize} disabled={isSummarizing || feedback.length === 0}>
+                    {isSummarizing ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Summarizing...</> : <><Wand2 className="mr-2 h-4 w-4"/>Summarize with AI</>}
                 </Button>
             </div>
           </CardHeader>

@@ -89,6 +89,7 @@ function AnnouncementsSection() {
 
   useEffect(() => {
     const fetchAnnouncements = async () => {
+        setIsLoading(true);
         try {
             const data = await getAnnouncements();
             setAnnouncements(data);
