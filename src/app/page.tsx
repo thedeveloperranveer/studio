@@ -217,10 +217,10 @@ function LatestLecturesSection() {
         }}
         className="w-full"
       >
-        <CarouselContent>
+        <CarouselContent className="-ml-2">
           {/* This is a bit of a hack, but it's the only way to render the static HTML strings into separate carousel items */}
           {lectureCardsHTML.split('<div class="lecture-card">').slice(1).map((cardHtml, index) => (
-             <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+             <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 pl-2">
                 <div className="p-1">
                    <div
                     className="lecture-card-wrapper"
