@@ -145,6 +145,20 @@ function LatestLecturesSection() {
         <a href="https://www.youtube.com/watch?v=zT0fKF4q7n4" target="_blank" class="button">Watch on YouTube</a>
       </div>
     </div>
+    <div class="lecture-card">
+      <img src="https://img.youtube.com/vi/cS64-wAFDuI/0.jpg" alt="VECTORS MATHS BEST ONESHOT " class="thumbnail">
+      <div class="card-content">
+        <h3 class="title">VECTORS MATHS BEST ONESHOT </h3>
+        <div class="tags">
+              <span class="tag">THEORY</span>
+              <span class="tag">ONESHOT</span>
+              <span class="tag">JEE</span>
+              <span class="tag">PYQs</span>
+        </div>
+        <p class="notes">NOTES WILL PROVIDED SOON</p>
+        <a href="https://www.youtube.com/watch?v=cS64-wAFDuI" target="_blank" class="button">Watch on YouTube</a>
+      </div>
+    </div>
   `;
 
   const lectureCardStyles = `
