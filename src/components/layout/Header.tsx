@@ -2,7 +2,7 @@
 'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Bell, BookOpen, Film, FlaskConical, LayoutGrid, User, Clock, FileText } from 'lucide-react';
+import { Bell, BookOpen, Film, FlaskConical, LayoutGrid, User, Clock, FileText, StickyNote } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -124,7 +124,7 @@ export default function Header() {
             <Bell className="h-5 w-5" />
           </Button>
           <Button asChild className='rounded-xl'>
-            <Link href="/profile"><User className='mr-2'/>Profile</Link>
+            <Link href="/login">Login</Link>
           </Button>
         </div>
         <div className="md:hidden">
@@ -153,7 +153,7 @@ export default function Header() {
                   </Button>
                 ))}
                  <Button variant="ghost" asChild className="justify-start text-lg p-6 rounded-lg"><Link href="/lectures/jee/physics" className='flex items-center gap-4'><Film className="h-5 w-5" />Lectures</Link></Button>
-                 <Button variant="ghost" asChild className="justify-start text-lg p-6 rounded-lg"><Link href="/notes" className='flex items-center gap-4'><FileText className="h-5 w-5" />Notes</Link></Button>
+                 <Button variant="ghost" asChild className="justify-start text-lg p-6 rounded-lg"><Link href="/notes" className='flex items-center gap-4'><StickyNote className="h-5 w-5" />Notes</Link></Button>
                  <Button variant="ghost" asChild className="justify-start text-lg p-6 rounded-lg"><Link href="/resources" className='flex items-center gap-4'><BookOpen className="h-5 w-5" />Resources</Link></Button>
               </nav>
               <div className="mt-8 border-t border-border pt-4 flex flex-col gap-4">
