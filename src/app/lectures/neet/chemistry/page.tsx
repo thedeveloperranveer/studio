@@ -26,7 +26,7 @@ export default function NeetChemistryPage() {
         overflow: hidden;
         width: 320px;
         transition: transform 0.2s;
-        margin: 1rem;
+        margin: 0.5rem;
       }
       .lecture-card:hover {
         transform: translateY(-5px);
@@ -83,7 +83,7 @@ export default function NeetChemistryPage() {
           NEET - Chemistry Lectures
         </h1>
         <div
-          className="flex flex-wrap justify-center md:justify-start gap-4"
+          className="flex flex-wrap justify-center md:justify-start -m-2"
           dangerouslySetInnerHTML={{ __html: lectureCardsHTML }}
         />
       </main>
