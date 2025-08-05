@@ -9,6 +9,7 @@ import {
   Calendar,
   ChevronRight,
   Inbox,
+  Clock,
 } from 'lucide-react';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
@@ -36,6 +37,7 @@ export default function Home() {
       <div className="space-y-16 md:space-y-24 px-4 py-8 md:py-16">
         <HeroSection />
         <AnnouncementsSection />
+        <LatestLecturesSection />
         <FreeResourcesSection />
         <UpcomingTestsSection />
         <ImportantUpdatesSection />
@@ -107,6 +109,110 @@ function AnnouncementsSection() {
     </section>
   );
 }
+
+function LatestLecturesSection() {
+    const allLectureCardsHTML = `
+    <div class="lecture-card">
+      <img src="https://img.youtube.com/vi/WDjcpSCI-uU/0.jpg" alt="Quantum Physics Demystified" class="thumbnail">
+      <div class="card-content">
+        <h3 class="title">Quantum Physics Demystified</h3>
+        <div class="tags">
+              <span class="tag">PYQ</span>
+              <span class="tag">OneShot</span>
+              <span class="tag">Advanced</span>
+        </div>
+        <p class="notes">Full chapter notes available in the description.</p>
+        <a href="https://www.youtube.com/watch?v=WDjcpSCI-uU" target="_blank" class="button">Watch on YouTube</a>
+      </div>
+    </div>
+    <div class="lecture-card">
+      <img src="https://img.youtube.com/vi/zT0fKF4q7n4/0.jpg" alt="BEST ONESHOT FOR IUPAC" class="thumbnail">
+      <div class="card-content">
+        <h3 class="title">BEST ONESHOT FOR IUPAC</h3>
+        <div class="tags">
+              <span class="tag">THEORY</span>
+              <span class="tag">ONESHOT</span>
+              <span class="tag">NEET</span>
+        </div>
+        <p class="notes">NOTES WILL PROVIDED SOON</p>
+        <a href="https://www.youtube.com/watch?v=zT0fKF4q7n4" target="_blank" class="button">Watch on YouTube</a>
+      </div>
+    </div>
+
+    <style>
+      .lecture-card {
+        background-color: #1e1e1e;
+        color: white;
+        font-family: sans-serif;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+        width: 320px;
+        transition: transform 0.2s;
+        margin: 1rem;
+      }
+      .lecture-card:hover {
+        transform: translateY(-5px);
+      }
+      .thumbnail {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+      }
+      .card-content {
+        padding: 16px;
+      }
+      .title {
+        font-size: 1.25rem;
+        font-weight: bold;
+        margin: 0 0 8px 0;
+      }
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 12px;
+      }
+      .tag {
+        background-color: #333;
+        padding: 4px 10px;
+        border-radius: 16px;
+        font-size: 0.8rem;
+      }
+      .notes {
+        font-size: 0.9rem;
+        color: #ccc;
+        margin-bottom: 16px;
+      }
+      .button {
+        display: block;
+        width: 100%;
+        text-align: center;
+        background: linear-gradient(to right, #00C6FF, #6E00FF);
+        color: white;
+        padding: 12px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+      }
+    </style>
+  `;
+
+  return (
+    <section className="container mx-auto">
+      <h2 className="font-headline text-3xl font-bold mb-6 flex items-center gap-3">
+        <Clock className="text-primary" /> Latest Lectures
+      </h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div
+            className="flex flex-wrap justify-center md:justify-start -ml-4"
+            dangerouslySetInnerHTML={{ __html: allLectureCardsHTML }}
+        />
+      </div>
+    </section>
+  );
+}
+
 
 function FreeResourcesSection() {
   return (
@@ -208,3 +314,5 @@ function ImportantUpdatesSection() {
     </section>
   );
 }
+
+    

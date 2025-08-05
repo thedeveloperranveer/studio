@@ -21,7 +21,6 @@ import {
 const navLinks = [
   { href: '/', label: 'Home', icon: LayoutGrid },
   { href: '/resources', label: 'Resources', icon: BookOpen },
-  { href: '/lectures', label: 'Latest Lectures', icon: Clock },
   { href: '/tests', label: 'Test Zone', icon: FlaskConical },
   { href: '/notes', label: 'Notes', icon: FileText },
 ];
@@ -121,3 +120,5 @@ export default function Header() {
     </header>
   );
 }
+
+    
