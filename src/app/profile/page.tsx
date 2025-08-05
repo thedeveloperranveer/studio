@@ -1,4 +1,6 @@
 
+'use client';
+
 import Header from "@/components/layout/Header";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -7,9 +9,44 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
 import { Bookmark, History, Settings, Shield } from "lucide-react";
 
 export default function ProfilePage() {
+  const { toast } = useToast();
+
+  const handleFeedbackSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.target as HTMLFormElement);
+    const subject = formData.get('subject') as string;
+    const feedback = formData.get('feedback') as string;
+
+    if (!subject.trim() || !feedback.trim()) {
+        toast({
+            variant: "destructive",
+            title: "Missing Fields",
+            description: "Please fill out both subject and description.",
+        });
+        return;
+    }
+
+    const feedbackText = `Subject: ${subject}\nFeedback: ${feedback}`;
+    
+    navigator.clipboard.writeText(feedbackText).then(() => {
+        toast({
+            title: "Feedback Copied!",
+            description: "Your feedback has been copied to the clipboard. The admin can now use this to improve the site.",
+        });
+         (e.target as HTMLFormElement).reset();
+    }).catch(err => {
+        toast({
+            variant: "destructive",
+            title: "Failed to Copy",
+            description: "Could not copy feedback to clipboard.",
+        });
+    });
+  };
+
   return (
     <>
       <Header />
@@ -53,16 +90,18 @@ export default function ProfilePage() {
                             We value your feedback. Let us know if you have any suggestions or encountered a problem.
                         </CardDescription>
                     </CardHeader>
-                    <CardContent className="space-y-4">
-                        <div className="space-y-2">
-                            <Label htmlFor="subject">Subject</Label>
-                            <Input id="subject" placeholder="e.g., Video player issue" className="bg-transparent" />
-                        </div>
-                         <div className="space-y-2">
-                            <Label htmlFor="feedback">Description</Label>
-                            <Textarea id="feedback" placeholder="Describe the issue or your feedback in detail." rows={5} className="bg-transparent"/>
-                        </div>
-                        <Button className="w-full rounded-xl">Submit Feedback</Button>
+                    <CardContent>
+                        <form onSubmit={handleFeedbackSubmit} className="space-y-4">
+                            <div className="space-y-2">
+                                <Label htmlFor="subject">Subject</Label>
+                                <Input id="subject" name="subject" placeholder="e.g., Video player issue" className="bg-transparent" />
+                            </div>
+                             <div className="space-y-2">
+                                <Label htmlFor="feedback">Description</Label>
+                                <Textarea id="feedback" name="feedback" placeholder="Describe the issue or your feedback in detail." rows={5} className="bg-transparent"/>
+                            </div>
+                            <Button type="submit" className="w-full rounded-xl">Submit Feedback</Button>
+                        </form>
                     </CardContent>
                 </Card>
             </div>

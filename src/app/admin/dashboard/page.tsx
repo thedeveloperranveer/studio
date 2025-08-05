@@ -47,7 +47,9 @@ export default function AdminDashboardPage() {
                 </CardHeader>
                 <CardContent>
                      <p className="text-muted-foreground mb-4">See what users are saying about the platform.</p>
-                     <Button className="w-full rounded-xl" disabled>View Feedback</Button>
+                     <Button className="w-full rounded-xl" asChild>
+                        <Link href="/admin/view-feedback">View Feedback</Link>
+                    </Button>
                 </CardContent>
             </Card>
         </div>
