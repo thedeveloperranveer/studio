@@ -1,6 +1,8 @@
-import type { Announcement, FreeResource, UpcomingTest, LatestLecture, ImportantUpdate, Post } from './types';
 
-export const announcements: Announcement[] = [];
+import type { FreeResource, UpcomingTest, LatestLecture, ImportantUpdate } from './types';
+
+// This file is now primarily for static data that is not managed by Firestore.
+// Announcements and Feedback are now fetched from Firestore.
 
 export const freeResources: FreeResource[] = [];
 
@@ -38,5 +40,3 @@ export const latestLectures: LatestLecture[] = [
 ];
 
 export const importantUpdates: ImportantUpdate[] = [];
-
-export const userFeedback: { id: number; username: string; feedback: string; date: string }[] = [];

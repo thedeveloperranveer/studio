@@ -11,11 +11,12 @@ import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Bookmark, History, Settings, Shield } from "lucide-react";
+import { createFeedback } from "@/lib/actions/feedback.actions";
 
 export default function ProfilePage() {
   const { toast } = useToast();
 
-  const handleFeedbackSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleFeedbackSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
     const subject = formData.get('subject') as string;
@@ -30,21 +31,20 @@ export default function ProfilePage() {
         return;
     }
 
-    const feedbackText = `Subject: ${subject}\nFeedback: ${feedback}`;
-    
-    navigator.clipboard.writeText(feedbackText).then(() => {
+    try {
+        await createFeedback({ subject, feedback });
         toast({
-            title: "Feedback Copied!",
-            description: "Your feedback has been copied to the clipboard. The admin can now use this to improve the site.",
+            title: "Feedback Submitted!",
+            description: "Thank you for your feedback. The admin will review it soon.",
         });
-         (e.target as HTMLFormElement).reset();
-    }).catch(err => {
-        toast({
+        (e.target as HTMLFormElement).reset();
+    } catch (error) {
+         toast({
             variant: "destructive",
-            title: "Failed to Copy",
-            description: "Could not copy feedback to clipboard.",
+            title: "Submission Failed",
+            description: "Could not submit your feedback. Please try again.",
         });
-    });
+    }
   };
 
   return (
@@ -94,11 +94,11 @@ export default function ProfilePage() {
                         <form onSubmit={handleFeedbackSubmit} className="space-y-4">
                             <div className="space-y-2">
                                 <Label htmlFor="subject">Subject</Label>
-                                <Input id="subject" name="subject" placeholder="e.g., Video player issue" className="bg-transparent" />
+                                <Input id="subject" name="subject" placeholder="e.g., Video player issue" className="bg-transparent" required />
                             </div>
                              <div className="space-y-2">
                                 <Label htmlFor="feedback">Description</Label>
-                                <Textarea id="feedback" name="feedback" placeholder="Describe the issue or your feedback in detail." rows={5} className="bg-transparent"/>
+                                <Textarea id="feedback" name="feedback" placeholder="Describe the issue or your feedback in detail." rows={5} className="bg-transparent" required/>
                             </div>
                             <Button type="submit" className="w-full rounded-xl">Submit Feedback</Button>
                         </form>

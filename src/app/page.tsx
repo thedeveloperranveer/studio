@@ -23,7 +23,6 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import {
-  announcements,
   freeResources,
   importantUpdates,
   upcomingTests,
@@ -36,6 +35,10 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import type { Announcement } from '@/lib/types';
+import { getAnnouncements } from '@/lib/actions/announcement.actions';
+import { useEffect, useState } from 'react';
+import { Loader2 } from 'lucide-react';
 
 export default function Home() {
   return (
@@ -89,23 +92,48 @@ function EmptyState({ title, description, icon: Icon }: { title: string, descrip
 }
 
 function AnnouncementsSection() {
+  const [announcements, setAnnouncements] = useState<Announcement[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchAnnouncements = async () => {
+        try {
+            const data = await getAnnouncements();
+            setAnnouncements(data);
+        } catch (error) {
+            console.error("Failed to fetch announcements", error);
+        } finally {
+            setIsLoading(false);
+        }
+    }
+    fetchAnnouncements();
+  }, [])
+
   return (
     <section className="container mx-auto">
       <h2 className="font-headline text-3xl font-bold mb-6 flex items-center gap-3">
         <Bell className="text-primary" /> Latest Announcements
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {announcements.length > 0 ? (
+        {isLoading ? (
+             <div className="col-span-full flex justify-center items-center h-40">
+                <Loader2 className="w-8 h-8 animate-spin text-primary"/>
+             </div>
+        ) : announcements.length > 0 ? (
           announcements.map((item) => (
             <Card key={item.id} className="glassmorphism hover:border-primary/50 transition-all duration-300">
               <CardHeader>
-                <CardTitle className="font-headline text-lg">{item.title}</CardTitle>
+                <div className="flex items-center gap-2">
+                    <span className={`px-2 py-0.5 rounded-full text-xs font-semibold ${item.tag === 'Important' ? 'bg-red-500/80' : item.tag === 'Update' ? 'bg-blue-500/80' : 'bg-gray-500/80'}`}>{item.tag}</span>
+                    <p className="text-xs text-muted-foreground">To: {item.audience}</p>
+                </div>
+                <CardTitle className="font-headline text-lg pt-2">{item.title}</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">{item.description}</p>
               </CardContent>
               <CardFooter>
-                <p className="text-sm text-muted-foreground">{item.date}</p>
+                <p className="text-sm text-muted-foreground">{new Date(item.createdAt).toLocaleDateString()}</p>
               </CardFooter>
             </Card>
           ))

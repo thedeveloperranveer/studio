@@ -36,7 +36,9 @@ export default function AdminDashboardPage() {
                 </CardHeader>
                 <CardContent>
                      <p className="text-muted-foreground mb-4">Create or remove announcements for all users.</p>
-                     <Button className="w-full rounded-xl" disabled>Manage</Button>
+                     <Button className="w-full rounded-xl" asChild>
+                        <Link href="/admin/manage-announcements">Manage</Link>
+                    </Button>
                 </CardContent>
             </Card>
 

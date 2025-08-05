@@ -1,9 +1,12 @@
 
+
 export interface Announcement {
-  id: number;
+  id: string;
   title: string;
   description: string;
-  date: string;
+  createdAt: string;
+  audience: 'All' | 'JEE' | 'NEET';
+  tag: 'Important' | 'Update' | 'Info';
 }
 
 export interface FreeResource {
@@ -38,4 +41,11 @@ export interface ImportantUpdate {
   title: string;
   description: string;
   link?: string;
+}
+
+export interface Feedback {
+    id: string;
+    subject: string;
+    feedback: string;
+    createdAt: string;
 }
