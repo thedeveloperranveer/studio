@@ -13,7 +13,7 @@ export default function JeeMathsPage() {
               <span class="tag">JEE</span>
               <span class="tag">PYQs</span>
         </div>
-        <a href="#" target="_blank" class="notes-button">View Notes</a>
+        <p class="notes">NOTES WILL PROVIDED SOON</p>
         <a href="https://www.youtube.com/watch?v=cS64-wAFDuI" target="_blank" class="button">Watch on YouTube</a>
       </div>
     </div>
