@@ -120,6 +120,21 @@ function AnnouncementsSection() {
 function LatestLecturesSection() {
     const lectureCardsHTML = `
     <div class="lecture-card">
+      <img src="https://img.youtube.com/vi/hJi3S1haN3Y/0.jpg" alt="CELL BEST ONESHOT FOR NEET" class="thumbnail">
+      <div class="card-content">
+        <h3 class="title">CELL BEST ONESHOT FOR NEET</h3>
+        <div class="tags">
+              <span class="tag">THEORY</span>
+              <span class="tag">NEET</span>
+              <span class="tag">SUMMARY</span>
+              <span class="tag">ONESHOT</span>
+              <span class="tag">SOME PYQ</span>
+        </div>
+        <p class="notes">NOTES WILL PROVIDED SOON</p>
+        <a href="https://www.youtube.com/watch?v=hJi3S1haN3Y" target="_blank" class="button">Watch on YouTube</a>
+      </div>
+    </div>
+    <div class="lecture-card">
       <img src="https://img.youtube.com/vi/cS64-wAFDuI/0.jpg" alt="VECTORS MATHS BEST ONESHOT " class="thumbnail">
       <div class="card-content">
         <h3 class="title">VECTORS MATHS BEST ONESHOT </h3>

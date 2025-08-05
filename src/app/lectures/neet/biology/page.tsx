@@ -3,7 +3,21 @@ import Header from '@/components/layout/Header';
 
 export default function NeetBiologyPage() {
   const lectureCardsHTML = `
-    {/* Add NEET Biology lecture cards here */}
+    <div class="lecture-card">
+      <img src="https://img.youtube.com/vi/hJi3S1haN3Y/0.jpg" alt="CELL BEST ONESHOT FOR NEET" class="thumbnail">
+      <div class="card-content">
+        <h3 class="title">CELL BEST ONESHOT FOR NEET</h3>
+        <div class="tags">
+              <span class="tag">THEORY</span>
+              <span class="tag">NEET</span>
+              <span class="tag">SUMMARY</span>
+              <span class="tag">ONESHOT</span>
+              <span class="tag">SOME PYQ</span>
+        </div>
+        <p class="notes">NOTES WILL PROVIDED SOON</p>
+        <a href="https://www.youtube.com/watch?v=hJi3S1haN3Y" target="_blank" class="button">Watch on YouTube</a>
+      </div>
+    </div>
     <style>
       .lecture-card {
         background-color: #1e1e1e;
