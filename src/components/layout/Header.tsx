@@ -15,14 +15,13 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
+  DropdownMenuGroup,
 } from "@/components/ui/dropdown-menu"
 
 
-const navLinks = [
+const mainNavLinks = [
   { href: '/', label: 'Home', icon: LayoutGrid },
-  { href: '/resources', label: 'Resources', icon: BookOpen },
   { href: '/tests', label: 'Test Zone', icon: FlaskConical },
-  { href: '/notes', label: 'Notes', icon: FileText },
 ];
 
 export default function Header() {
@@ -34,8 +33,8 @@ export default function Header() {
         <Link href="/" className="flex items-center gap-2">
           <Logo className="h-8 w-auto" />
         </Link>
-        <nav className="hidden md:flex items-center gap-2">
-          {navLinks.map((link) => (
+        <nav className="hidden md:flex items-center gap-1">
+          {mainNavLinks.map((link) => (
             <Button
               key={link.href}
               variant="ghost"
@@ -48,24 +47,77 @@ export default function Header() {
               <Link href={link.href}>{link.label}</Link>
             </Button>
           ))}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className='rounded-lg'>Lectures</Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-56">
-                <DropdownMenuLabel>JEE</DropdownMenuLabel>
+          
+          {/* Lectures Dropdown */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className={cn('rounded-lg', pathname.startsWith('/lectures') && 'bg-primary/10 text-primary')}>Lectures</Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-56">
+                <DropdownMenuGroup>
+                    <DropdownMenuLabel>JEE</DropdownMenuLabel>
+                    <DropdownMenuItem asChild><Link href="/lectures/jee/physics">Physics</Link></DropdownMenuItem>
+                    <DropdownMenuItem asChild><Link href="/lectures/jee/chemistry">Chemistry</Link></DropdownMenuItem>
+                    <DropdownMenuItem asChild><Link href="/lectures/jee/maths">Maths</Link></DropdownMenuItem>
+                </DropdownMenuGroup>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem asChild><Link href="/lectures/jee/physics">Physics</Link></DropdownMenuItem>
-                <DropdownMenuItem asChild><Link href="/lectures/jee/chemistry">Chemistry</Link></DropdownMenuItem>
-                <DropdownMenuItem asChild><Link href="/lectures/jee/maths">Maths</Link></DropdownMenuItem>
+                <DropdownMenuGroup>
+                    <DropdownMenuLabel>NEET</DropdownMenuLabel>
+                    <DropdownMenuItem asChild><Link href="/lectures/neet/physics">Physics</Link></DropdownMenuItem>
+                    <DropdownMenuItem asChild><Link href="/lectures/neet/chemistry">Chemistry</Link></DropdownMenuItem>
+                    <DropdownMenuItem asChild><Link href="/lectures/neet/biology">Biology</Link></DropdownMenuItem>
+                </DropdownMenuGroup>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          {/* Notes Dropdown */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className={cn('rounded-lg', pathname.startsWith('/notes') && 'bg-primary/10 text-primary')}>Notes</Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-56">
+                <DropdownMenuItem asChild><Link href="/notes">Latest Notes</Link></DropdownMenuItem>
                 <DropdownMenuSeparator />
-                 <DropdownMenuLabel>NEET</DropdownMenuLabel>
+                <DropdownMenuGroup>
+                    <DropdownMenuLabel>JEE</DropdownMenuLabel>
+                    <DropdownMenuItem asChild><Link href="/notes/jee/physics">Physics</Link></DropdownMenuItem>
+                    <DropdownMenuItem asChild><Link href="/notes/jee/chemistry">Chemistry</Link></DropdownMenuItem>
+                    <DropdownMenuItem asChild><Link href="/notes/jee/maths">Maths</Link></DropdownMenuItem>
+                </DropdownMenuGroup>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem asChild><Link href="/lectures/neet/physics">Physics</Link></DropdownMenuItem>
-                <DropdownMenuItem asChild><Link href="/lectures/neet/chemistry">Chemistry</Link></DropdownMenuItem>
-                <DropdownMenuItem asChild><Link href="/lectures/neet/biology">Biology</Link></DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+                <DropdownMenuGroup>
+                    <DropdownMenuLabel>NEET</DropdownMenuLabel>
+                    <DropdownMenuItem asChild><Link href="/notes/neet/physics">Physics</Link></DropdownMenuItem>
+                    <DropdownMenuItem asChild><Link href="/notes/neet/chemistry">Chemistry</Link></DropdownMenuItem>
+                    <DropdownMenuItem asChild><Link href="/notes/neet/biology">Biology</Link></DropdownMenuItem>
+                </DropdownMenuGroup>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          {/* Resources Dropdown */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className={cn('rounded-lg', pathname.startsWith('/resources') && 'bg-primary/10 text-primary')}>Resources</Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-56">
+                <DropdownMenuItem asChild><Link href="/resources">Latest Resources</Link></DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuGroup>
+                    <DropdownMenuLabel>JEE</DropdownMenuLabel>
+                    <DropdownMenuItem asChild><Link href="/resources/jee/physics">Physics</Link></DropdownMenuItem>
+                    <DropdownMenuItem asChild><Link href="/resources/jee/chemistry">Chemistry</Link></DropdownMenuItem>
+                    <DropdownMenuItem asChild><Link href="/resources/jee/maths">Maths</Link></DropdownMenuItem>
+                </DropdownMenuGroup>
+                <DropdownMenuSeparator />
+                <DropdownMenuGroup>
+                    <DropdownMenuLabel>NEET</DropdownMenuLabel>
+                    <DropdownMenuItem asChild><Link href="/resources/neet/physics">Physics</Link></DropdownMenuItem>
+                    <DropdownMenuItem asChild><Link href="/resources/neet/chemistry">Chemistry</Link></DropdownMenuItem>
+                    <DropdownMenuItem asChild><Link href="/resources/neet/biology">Biology</Link></DropdownMenuItem>
+                </DropdownMenuGroup>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
         </nav>
         <div className="hidden md:flex items-center gap-2">
           <Button variant="ghost" size="icon" className="rounded-full">
@@ -84,7 +136,7 @@ export default function Header() {
             </SheetTrigger>
             <SheetContent side="right" className="w-[280px] glassmorphism border-none">
               <nav className="flex flex-col gap-4 mt-8">
-                {navLinks.map((link) => (
+                {mainNavLinks.map((link) => (
                   <Button
                     key={link.href}
                     variant="ghost"
@@ -100,6 +152,9 @@ export default function Header() {
                     </Link>
                   </Button>
                 ))}
+                 <Button variant="ghost" asChild className="justify-start text-lg p-6 rounded-lg"><Link href="/lectures/jee/physics" className='flex items-center gap-4'><Film className="h-5 w-5" />Lectures</Link></Button>
+                 <Button variant="ghost" asChild className="justify-start text-lg p-6 rounded-lg"><Link href="/notes" className='flex items-center gap-4'><FileText className="h-5 w-5" />Notes</Link></Button>
+                 <Button variant="ghost" asChild className="justify-start text-lg p-6 rounded-lg"><Link href="/resources" className='flex items-center gap-4'><BookOpen className="h-5 w-5" />Resources</Link></Button>
               </nav>
               <div className="mt-8 border-t border-border pt-4 flex flex-col gap-4">
                  <Button
@@ -120,5 +175,3 @@ export default function Header() {
     </header>
   );
 }
-
-    
