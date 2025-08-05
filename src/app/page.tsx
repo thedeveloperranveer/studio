@@ -157,7 +157,6 @@ function LatestLecturesSection() {
       overflow: hidden;
       width: 320px;
       transition: transform 0.2s;
-      margin: 1rem;
     }
     .lecture-card:hover {
       transform: translateY(-5px);
@@ -342,3 +341,4 @@ function ImportantUpdatesSection() {
 
     
 
+    
