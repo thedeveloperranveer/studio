@@ -2,7 +2,7 @@
 'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Bell, BookOpen, Film, FlaskConical, LayoutGrid, User, Clock } from 'lucide-react';
+import { Bell, BookOpen, Film, FlaskConical, LayoutGrid, User, Clock, FileText } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -23,6 +23,7 @@ const navLinks = [
   { href: '/resources', label: 'Resources', icon: BookOpen },
   { href: '/lectures', label: 'Latest Lectures', icon: Clock },
   { href: '/tests', label: 'Test Zone', icon: FlaskConical },
+  { href: '/notes', label: 'Notes', icon: FileText },
 ];
 
 export default function Header() {
