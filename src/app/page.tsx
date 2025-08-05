@@ -129,7 +129,7 @@ function LatestLecturesSection() {
               <span class="tag">JEE</span>
               <span class="tag">PYQs</span>
         </div>
-        <p class="notes">NOTES WILL PROVIDED SOON</p>
+        <a href="#" target="_blank" class="notes-button">View Notes</a>
         <a href="https://www.youtube.com/watch?v=cS64-wAFDuI" target="_blank" class="button">Watch on YouTube</a>
       </div>
     </div>
@@ -205,6 +205,22 @@ function LatestLecturesSection() {
       color: #ccc;
       margin-bottom: 16px;
     }
+    .notes-button {
+      display: block;
+      width: 100%;
+      text-align: center;
+      background-color: #333;
+      color: white;
+      padding: 10px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-bottom: 10px;
+      transition: background-color 0.2s;
+    }
+    .notes-button:hover {
+        background-color: #444;
+    }
     .button {
       display: block;
       width: 100%;
@@ -234,7 +250,7 @@ function LatestLecturesSection() {
         <CarouselContent className="-ml-1">
           {/* This is a bit of a hack, but it's the only way to render the static HTML strings into separate carousel items */}
           {lectureCardsHTML.split('<div class="lecture-card">').slice(1).map((cardHtml, index) => (
-             <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 pl-1">
+             <CarouselItem key={index} className="pl-1 md:basis-1/2 lg:basis-1/3">
                 <div className="p-1">
                    <div
                     className="lecture-card-wrapper"

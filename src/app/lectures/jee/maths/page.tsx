@@ -13,7 +13,7 @@ export default function JeeMathsPage() {
               <span class="tag">JEE</span>
               <span class="tag">PYQs</span>
         </div>
-        <p class="notes">NOTES WILL PROVIDED SOON</p>
+        <a href="#" target="_blank" class="notes-button">View Notes</a>
         <a href="https://www.youtube.com/watch?v=cS64-wAFDuI" target="_blank" class="button">Watch on YouTube</a>
       </div>
     </div>
@@ -61,6 +61,22 @@ export default function JeeMathsPage() {
         font-size: 0.9rem;
         color: #ccc;
         margin-bottom: 16px;
+      }
+      .notes-button {
+        display: block;
+        width: 100%;
+        text-align: center;
+        background-color: #333;
+        color: white;
+        padding: 10px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+        margin-bottom: 10px;
+        transition: background-color 0.2s;
+      }
+      .notes-button:hover {
+        background-color: #444;
       }
       .button {
         display: block;
