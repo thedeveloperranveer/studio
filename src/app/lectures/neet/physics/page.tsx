@@ -16,19 +16,6 @@ export default function NeetPhysicsPage() {
     <a href="https://www.youtube.com/watch?v=WDjcpSCI-uU" target="_blank" class="button">Watch on YouTube</a>
   </div>
 </div>
-<div class="lecture-card">
-  <img src="https://img.youtube.com/vi/WDjcpSCI-uU/0.jpg" alt="Quantum Physics Demystified" class="thumbnail">
-  <div class="card-content">
-    <h3 class="title">Quantum Physics Demystified</h3>
-    <div class="tags">
-          <span class="tag">PYQ</span>
-          <span class="tag">OneShot</span>
-          <span class="tag">Advanced</span>
-    </div>
-    <p class="notes">Full chapter notes available in the description.</p>
-    <a href="https://www.youtube.com/watch?v=WDjcpSCI-uU" target="_blank" class="button">Watch on YouTube</a>
-  </div>
-</div>
 
 <style>
   .lecture-card {
