@@ -16,6 +16,19 @@ export default function LatestLecturesPage() {
         <a href="https://www.youtube.com/watch?v=WDjcpSCI-uU" target="_blank" class="button">Watch on YouTube</a>
       </div>
     </div>
+    <div class="lecture-card">
+      <img src="https://img.youtube.com/vi/zT0fKF4q7n4/0.jpg" alt="BEST ONESHOT FOR IUPAC" class="thumbnail">
+      <div class="card-content">
+        <h3 class="title">BEST ONESHOT FOR IUPAC</h3>
+        <div class="tags">
+              <span class="tag">THEORY</span>
+              <span class="tag">ONESHOT</span>
+              <span class="tag">NEET</span>
+        </div>
+        <p class="notes">NOTES WILL PROVIDED SOON</p>
+        <a href="https://www.youtube.com/watch?v=zT0fKF4q7n4" target="_blank" class="button">Watch on YouTube</a>
+      </div>
+    </div>
 
     <style>
       .lecture-card {
